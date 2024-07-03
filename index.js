@@ -4,7 +4,14 @@ const cors = require("cors")
 require("dotenv").config()
 
 const app = express()
-app.use(cors())
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://pottery-picks-client.vercel.app",
+    ],
+  })
+)
 app.use(express.json())
 
 const uri = process.env.MONGODB_URI
@@ -93,9 +100,9 @@ async function run() {
 run().catch(console.dir)
 
 app.get("/", (req, res) => {
-  res.send("Coffee making server is running")
+  res.send("Art and Craft Server is Running")
 })
 
 app.listen(port, () => {
-  console.log(`Coffee Server is running on port: ${port}`)
+  console.log(`Art and Craft Server is running on port: ${port}`)
 })
