@@ -24,7 +24,7 @@ async function run() {
     const craftCollection = client.db("craftDb").collection("craft")
 
     app.get("/craft", async (req, res) => {
-      const crafts = craftCollection.find()
+      const crafts = craftCollection.find().sort({ createdAt: -1 })
       const result = await crafts.toArray()
       res.send(result)
     })
